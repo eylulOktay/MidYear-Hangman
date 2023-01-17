@@ -1,6 +1,6 @@
 from tkinter import *
-from OpeningGUI import Screen_Opening
-from gameGUI import Game_Screen
+from hangmanOpeningGui import Screen_Opening
+from hangmanGUI import Hangman_Game_Screen
 
 class GameManager(object):
 
@@ -9,7 +9,7 @@ class GameManager(object):
         self.current_screen = None
     
     def setup_openingscreen(self):
-        self.root.title ("2048")
+        self.root.title ("Hangman!")
         self.root.geometry ("555x500")
         self.current_screen = Screen_Opening (master = self.root, callback_on_play = self.onclose_openingscreen)
 
@@ -18,9 +18,9 @@ class GameManager(object):
         self.setup_gameGUI()
 
     def setup_gameGUI(self):
-        self.root.title ("2048")
+        self.root.title ("Hangman!")
         self.root.geometry ("555x500")
-        self.current_screen = Game_Screen (master = self.root, callback_on_exit = self.onclose_gameGUI)
+        self.current_screen = Hangman_Game_Screen (master = self.root, callback_on_exit = self.onclose_gameGUI)
 
     def onclose_gameGUI(self):
         self.current_screen.destroy()
