@@ -21,14 +21,15 @@ def read():
         counter += 1
 
 def checker(letter): 
-    for i in char_array: 
-        if i == letter: 
+    for i in len(char_array): 
+        if char_array[i] == letter: 
             dash_array[i] = letter
 
 def toString(array):
-    same_string = ' '; 
+    same_string = ''
     for i in array:
         same_string += i
+    return same_string
 
 def main():
     read()
