@@ -35,7 +35,7 @@ def main():
     read()
     while (char_array != dash_array):
         print(toString(dash_array))
-        user_letter = input("Enter a letter!")
+        user_letter = input("Enter a letter! ")
         checker(user_letter)
     print("You won!")
 
