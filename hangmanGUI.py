@@ -26,9 +26,6 @@ class Hangman_Game_Screen(Frame):
 
             self.rowtexts[row].set(rowonetext)
 
-    
-
-
     def create_widgets(self):
         Label(self, text = "HANGMAN", font = )
         #Label(self, text = "2048", font = "Georgia 25 bold", fg = "Hot Pink").grid(row = 0, column = 1)
@@ -45,11 +42,6 @@ class Hangman_Game_Screen(Frame):
 
         #Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.callback_on_exit
         #).grid(row = 6, column = 1) */
-
-
-
-
-
 
     def selected_exit(self):
         self.callback_on_exit()
