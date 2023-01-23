@@ -27,7 +27,7 @@ class Hangman_Game_Screen(Frame):
             self.rowtexts[row].set(rowonetext)
 
     def create_widgets(self):
-        Label(self, text = "HANGMAN", font = )
+        Label(self, text = "HANGMAN", font = "Georgia 25 bold" )
         #Label(self, text = "2048", font = "Georgia 25 bold", fg = "Hot Pink").grid(row = 0, column = 1)
         #Label(self, text = "\n\n\n\n\n\n\n").grid(row = 1)
 
