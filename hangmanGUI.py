@@ -1,5 +1,5 @@
 from tkinter import *
-from Model import *
+from hangmain import *
 class Hangman_Game_Screen(Frame):
 
     def __init__(self, master, callback_on_exit):
