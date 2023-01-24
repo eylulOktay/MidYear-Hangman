@@ -10,8 +10,8 @@ class Screen_Opening(Frame):
         self.grid()
 
     def create_widgets(self):
-
-        self.bttn_hello["text"] = "Hangman!"
+        #self.bttn_hello = Button(self, )
+        #self.bttn_hello["text"] = "Hangman!"
 
         #title
         Label(self, text = "\n\n\n").grid(row = 0)

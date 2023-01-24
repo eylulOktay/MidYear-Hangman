@@ -39,4 +39,4 @@ def main():
         checker(user_letter)
     print("You won!")
 
-main()
+#main()
