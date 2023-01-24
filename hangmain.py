@@ -15,7 +15,6 @@ def read():
         char_array.append(letter)
         letter_counter += 1
 
-<<<<<<< HEAD
     counter = 0
     while (counter < letter_counter):
         dash_array.append("_")
@@ -41,7 +40,3 @@ def main():
     print("You won!")
 
 main()
-=======
-while ()
-# comment 
->>>>>>> e2532422961fb135a1ff0962b8366b7155be7f55
