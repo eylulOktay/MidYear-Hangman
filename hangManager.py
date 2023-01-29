@@ -10,7 +10,7 @@ class GameManager(object):
     
     def setup_openingscreen(self):
         self.root.title ("Hangman!")
-        self.root.geometry ("1000x1000")
+        self.root.geometry ("555x500")
         self.current_screen = Screen_Opening (master = self.root, callback_on_play = self.onclose_openingscreen)
 
     def onclose_openingscreen(self):
@@ -31,5 +31,3 @@ def main():
     game.setup_openingscreen()
     game.root.mainloop()
 main()
-mother_name = input("What's ur mom's name?")
-print(mother_name + " is really fucking hot !!")
