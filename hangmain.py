@@ -74,4 +74,12 @@ def main():
     print(f"You won! It took you {guesses} guesses, and you got {num_wrong} wrong.")
 
 
+<<<<<<< HEAD
 main()
+=======
+main()
+        checker(user_letter)
+    print("You won!")
+
+#main()
+>>>>>>> 38c6af615657ea77501b659205c2e8b7953c9973
