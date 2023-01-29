@@ -1,8 +1,9 @@
 from tkinter import *
 
+bg_color = "#E5E0FF"
 class Screen_Opening(Frame):
     def __init__(self, master, callback_on_play):
-        super().__init__(master)
+        super().__init__(master, bg = bg_color)
 
         self.callback_on_play = callback_on_play
 

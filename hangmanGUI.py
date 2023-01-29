@@ -1,9 +1,11 @@
 from tkinter import *
 from hangmain import *
+
+bg_color = "#E5E0FF"
 class Hangman_Game_Screen(Frame):
 
     def __init__(self, master, callback_on_exit):
-        super().__init__(master)
+        super().__init__(master, bg = bg_color)
 
         self.callback_on_exit = callback_on_exit
 
@@ -27,7 +29,8 @@ class Hangman_Game_Screen(Frame):
             self.rowtexts[row].set(rowonetext)
 
     def create_widgets(self):
-        Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "White")
+        Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "White", bg = bg_color).grid(row = 0, column = 1)
+
         #Label(self, text = "2048", font = "Georgia 25 bold", fg = "Hot Pink").grid(row = 0, column = 1)
         #Label(self, text = "\n\n\n\n\n\n\n").grid(row = 1)
 

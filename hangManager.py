@@ -31,3 +31,5 @@ def main():
     game.setup_openingscreen()
     game.root.mainloop()
 main()
+mother_name = input("What's ur mom's name?")
+print(mother_name + " is really fucking hot !!")
