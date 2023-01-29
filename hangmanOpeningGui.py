@@ -16,7 +16,7 @@ class Screen_Opening(Frame):
 
         #title
         Label(self, text = "\n\n\n").grid(row = 0)
-        title = Label(self, text = "Hangman!", font = "Georgia 100 bold", fg = "#F67280")
+        title = Label(self, text = "Hangman!", font = "Press Start 2P 100 bold", fg = "#F67280", bg = bg_color)
         title.place(relx = 0.5, rely = 0.5, anchor='center')
         title.grid(row = 0, column = 0)
         
@@ -24,14 +24,14 @@ class Screen_Opening(Frame):
         #Label(self, text = "").grid(row = 0, column = 2)
        
         instruction = Label(self, text = "How to Play:\n\nTry to find the word by guessing letters!\nEvery incorrect letter will draw a part of the Hangman\nTry to find the word in 6 guesses before the full Hangman is drawn!", 
-                    font = "Helvetica 30 italic", fg = "#7286D3"
+                    font = "Helvetica 30 italic", fg = "#7286D3", bg = bg_color
                     )
         instruction.place(relx = 1, rely = 1, anchor='center')
         instruction.grid(row = 7, column = 0)
         
         Label(self, text = "").grid(row = 6)
         btn = Button(self, text = "Press to Play", 
-                     font = "Courier 25 bold", fg = "#ACDDDE", command = self.selected_play
+                     font = "Courier 25 bold", fg = "#ACDDDE", bg = bg_color, command = self.selected_play
                      )
         btn.place(relx = 1, rely = 1, anchor='center')
         btn.grid(row = 15, column = 0)
