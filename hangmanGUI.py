@@ -15,21 +15,21 @@ class Hangman_Game_Screen(Frame):
     #def setup_grid(self):
         #self.grid1 = Grid()
 
-    def display_grid(self):
+    #def display_grid(self):
         #for row in range(0):
-        row = 0
-        for row in range(0,4):
-            rowonetext = ""
-            for col in range(0,4):
-                if self.grid1.grid[row][col] == None:
-                    rowonetext += "  x  "
-                else:
-                    rowonetext += "   " + str(self.grid1.grid[row][col])
+        #row = 0
+        #for row in range(0,4):
+            #rowonetext = ""
+            #for col in range(0,4):
+                #if self.grid1.grid[row][col] == None:
+                    #rowonetext += "  x  "
+                #else:
+                    #rowonetext += "   " + str(self.grid1.grid[row][col])
 
-            self.rowtexts[row].set(rowonetext)
+            #self.rowtexts[row].set(rowonetext)
 
     def create_widgets(self):
-        Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "White", bg = bg_color).grid(row = 0, column = 1)
+        Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "black", bg = bg_color).grid(row = 0, column = 1)
 
         #Label(self, text = "2048", font = "Georgia 25 bold", fg = "Hot Pink").grid(row = 0, column = 1)
         #Label(self, text = "\n\n\n\n\n\n\n").grid(row = 1)
