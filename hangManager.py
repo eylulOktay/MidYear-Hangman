@@ -10,7 +10,7 @@ class GameManager(object):
     
     def setup_openingscreen(self):
         self.root.title ("Hangman!")
-        self.root.geometry ("500x400")
+        self.root.geometry ("1000x1000")
         self.current_screen = Screen_Opening (master = self.root, callback_on_play = self.onclose_openingscreen)
 
     def onclose_openingscreen(self):
@@ -19,11 +19,7 @@ class GameManager(object):
 
     def setup_gameGUI(self):
         self.root.title ("Hangman!")
-<<<<<<< HEAD
-        self.root.geometry ("1000x800")
-=======
         self.root.geometry ("1000X1000")
->>>>>>> f8844b120b68d35bcbce30aad1ad0af17eb34cb5
         self.current_screen = Hangman_Game_Screen (master = self.root, callback_on_exit = self.onclose_gameGUI)
 
     def onclose_gameGUI(self):
