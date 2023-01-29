@@ -51,6 +51,7 @@ def main():
     while char_array != dash_array:
         print(toString(dash_array))
         user_letter = input("Enter a letter! ")
+<<<<<<< HEAD
 
         guesses += 1
 
@@ -75,3 +76,9 @@ def main():
 
 
 main()
+=======
+        checker(user_letter)
+    print("You won!")
+
+#main()
+>>>>>>> 8fbf5e4a253247e5965c87f7d15e3a48298ba53c
