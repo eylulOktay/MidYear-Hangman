@@ -41,37 +41,37 @@ def toString(array):
         same_string += i
     return same_string
 
-def main():
-    guesses = 0
-    num_wrong = 0
+# def main():
+#     guesses = 0
+#     num_wrong = 0
     
-    read()
-    print("Welcome to Hangman!")
-    print(f"Your word has {len(dash_array)} letters.") 
-    while char_array != dash_array:
-        print(toString(dash_array))
-        user_letter = input("Enter a letter! ")
+#     read()
+#     print("Welcome to Hangman!")
+#     print(f"Your word has {len(dash_array)} letters.") 
+#     while char_array != dash_array:
+#         print(toString(dash_array))
+#         user_letter = input("Enter a letter! ")
 
-        guesses += 1
+#         guesses += 1
 
-        if checker(user_letter)==False:
-            num_wrong += 1
-            if user_letter.isnumeric(): # have to check if it's a symbol ... 
-                print("This is not a valid input. Please input a letter.")
-            else: 
-                print("This letter does not exist in the word.")
+#         if checker(user_letter)==False:
+#             num_wrong += 1
+#             if user_letter.isnumeric(): # have to check if it's a symbol ... 
+#                 print("This is not a valid input. Please input a letter.")
+#             else: 
+#                 print("This letter does not exist in the word.")
 
-        num_dashes = 0
-        for x in dash_array: 
-            if x == '_': 
-                num_dashes+=1
+#         num_dashes = 0
+#         for x in dash_array: 
+#             if x == '_': 
+#                 num_dashes+=1
         
-        if num_dashes == 1: 
-            print("You're almost there!")
+#         if num_dashes == 1: 
+#             print("You're almost there!")
         
 
-    print(dash_array)
-    print(f"You won! It took you {guesses} guesses, and you got {num_wrong} wrong.")
+#     print(dash_array)
+#     print(f"You won! It took you {guesses} guesses, and you got {num_wrong} wrong.")
 
 
-main()
+# main()
