@@ -36,9 +36,7 @@ class Hangman_Game_Screen(Frame):
                         image = imageSmall, borderwidth=0
                          )
         w.photo = imageSmall
-        w.grid (row = 3, column = 1)
-        #Label(self, text = "2048", font = "Georgia 25 bold", fg = "Hot Pink").grid(row = 0, column = 1)
-        #Label(self, text = "\n\n\n\n\n\n\n").grid(row = 1)
+        w.grid (row = 9, column = 1)
 
         #Label(self, text = "Score:", font = "Georgia 15", fg = "Hot Pink"). grid (row = 0, column = 2)
 
