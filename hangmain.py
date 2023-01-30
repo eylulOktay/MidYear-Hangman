@@ -10,7 +10,7 @@ char_array = []
 
 # reads in file 
 def read():
-    words = (open("wordBank.txt")).read() # reading the file
+    words = (open("MidYear-Hangman/wordBank.txt")).read() # reading the file
     word_list = words.split("\n")
         
     word_num = random.randrange(0,len(word_list))
@@ -29,10 +29,19 @@ def read():
 
 def checker(letter): 
     result = False
-    for i in range(0, len(char_array)): 
-        if char_array[i] == letter: 
-            dash_array[i] = letter
+    input_arr = []
+    if len(letter) > 1: 
+        for x in letter: 
+            input_arr.append(x)
+        print(input_arr)
+        if (input_arr == char_array):
+            dash_array = char_array
             result = True
+    else: 
+        for i in range(0, len(char_array)): 
+            if char_array[i] == letter: 
+                dash_array[i] = letter
+                result = True
 
     return result
 
@@ -57,10 +66,12 @@ def main():
 
          if checker(user_letter)==False:
              num_wrong += 1
-             if user_letter.isnumeric(): # have to check if it's a symbol ... 
+             if  user_letter.isalpha() == False: # have to check if it's a symbol ... 
                  print("This is not a valid input. Please input a letter.")
              else: 
                  print("This letter does not exist in the word.")
+         else:
+            break
 
          num_dashes = 0
          for x in dash_array: 
@@ -71,7 +82,7 @@ def main():
              print("You're almost there!")
         
 
-     print(dash_array)
+     print(toString(dash_array))
      print(f"You won! It took you {guesses} guesses, and you got {num_wrong} wrong.")
 
 
