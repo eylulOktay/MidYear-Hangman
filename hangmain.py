@@ -28,12 +28,13 @@ def read():
         counter += 1
 
 def checker(letter): 
-    for i in char_array: 
-        if i == letter: 
-            dash_array[char_array.index(letter)] = letter
-            return True
+    result = False
+    for i in range(0, len(char_array)): 
+        if char_array[i] == letter: 
+            dash_array[i] = letter
+            result = True
 
-    return False
+    return result
 
 def toString(array):
     same_string = ''
