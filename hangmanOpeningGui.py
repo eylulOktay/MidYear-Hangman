@@ -15,7 +15,7 @@ class Screen_Opening(Frame):
         #self.bttn_hello["text"] = "Hangman!"
 
         #title
-        Label(self, text = "\n\n\n").grid(row = 0)
+        Label(self, text = "\n\n\n", bg = bg_color ).grid(row = 0)
         title = Label(self, text = "Hangman!", font = "Georgia 100 bold", fg = "#F67280", bg = bg_color)
         title.place(relx = 0.5, rely = 0.5, anchor='center')
         title.grid(row = 0, column = 0)
@@ -29,15 +29,15 @@ class Screen_Opening(Frame):
         instruction.place(relx = 1, rely = 1, anchor='center')
         instruction.grid(row = 7, column = 0)
         
-        Label(self, text = "").grid(row = 6)
+        Label(self, text = "", bg = bg_color).grid(row = 6)
         btn = Button(self, text = "Press to Play", 
                      font = "Courier 25 bold", fg = "#ACDDDE", bg = bg_color, command = self.selected_play
                      )
         btn.place(relx = 1, rely = 1, anchor='center')
         btn.grid(row = 15, column = 0)
 
-        Label(self, text = "").grid(row = 6)
-        Label(self, text = "").grid(row = 10)
+        Label(self, text = "", bg = bg_color).grid(row = 6)
+        Label(self, text = "", bg = bg_color).grid(row = 10)
         
     def selected_play(self):
         self.callback_on_play()
