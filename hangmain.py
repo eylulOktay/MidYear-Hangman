@@ -28,6 +28,7 @@ def read():
         counter += 1
 
 def checker(letter): 
+    global dash_array
     result = False
     input_arr = []
     if len(letter) > 1: 
@@ -60,18 +61,16 @@ def main():
      print(f"Your word has {len(dash_array)} letters.") 
      while char_array != dash_array:
          print(toString(dash_array))
-         user_letter = input("Enter a letter! ")
+         user_letter = input("Enter a letter or word! ")
 
          guesses += 1
 
          if checker(user_letter)==False:
              num_wrong += 1
              if  user_letter.isalpha() == False: # have to check if it's a symbol ... 
-                 print("This is not a valid input. Please input a letter.")
+                 print("This is not a valid input. Please input a letter or word.")
              else: 
-                 print("This letter does not exist in the word.")
-         else:
-            break
+                 print("Nope! Try Again")
 
          num_dashes = 0
          for x in dash_array: 
