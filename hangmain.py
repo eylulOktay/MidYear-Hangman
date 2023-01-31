@@ -7,6 +7,7 @@ import random
 
 dash_array = []
 char_array = []
+inc_letters = []
 
 # reads in file 
 def read():
@@ -67,6 +68,7 @@ def main():
 
          if checker(user_letter)==False:
              num_wrong += 1
+             inc_letters.append(user_letter)
              if  user_letter.isalpha() == False: # have to check if it's a symbol ... 
                  print("This is not a valid input. Please input a letter or word.")
              else: 
@@ -83,6 +85,7 @@ def main():
 
      print(toString(dash_array))
      print(f"You won! It took you {guesses} guesses, and you got {num_wrong} wrong.")
+     print(f"Incorrect letters: {toString(inc_letters)}")
 
 
 main()
