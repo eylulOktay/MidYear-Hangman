@@ -31,14 +31,12 @@ class Hangman_Game_Screen(Frame):
     def create_widgets(self):
         Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "black", bg = bg_color).grid(row = 0, column = 1)
 
-        #imageSmall = PhotoImage(file="images/hanger.gif")
-        #w = Label (self,
-                        #image = imageSmall, borderwidth=0
-                         #)
-        #w.photo = imageSmall
-        #w.grid (row = 3, column = 1)
-        #Label(self, text = "2048", font = "Georgia 25 bold", fg = "Hot Pink").grid(row = 0, column = 1)
-        #Label(self, text = "\n\n\n\n\n\n\n").grid(row = 1)
+        imageSmall = PhotoImage(file="images/hanger.gif")
+        w = Label (self,
+                        image = imageSmall, borderwidth=0
+                         )
+        w.photo = imageSmall
+        w.grid (row = 9, column = 1)
 
         #Label(self, text = "Score:", font = "Georgia 15", fg = "Hot Pink"). grid (row = 0, column = 2)
 
