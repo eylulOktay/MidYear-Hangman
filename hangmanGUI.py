@@ -31,6 +31,7 @@ class Hangman_Game_Screen(Frame):
     def create_widgets(self):
         Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "black", bg = bg_color).grid(row = 0, column = 1)
 
+        #Adding hanger pieces
         imageSmall = PhotoImage(file="images/hanger.gif")
         w = Label (self,
                         image = imageSmall, borderwidth=0
@@ -38,6 +39,11 @@ class Hangman_Game_Screen(Frame):
         w.photo = imageSmall
         w.grid (row = 9, column = 1)
 
+    def display_word(self):
+        for char in dash_array:
+            Label(self, text = "" + char + "", font = "Georgia 15", fg = "black").grid(row = 0, column = 2)
+    
+    
         #Label(self, text = "Score:", font = "Georgia 15", fg = "Hot Pink"). grid (row = 0, column = 2)
 
         #self.rowtexts = []
@@ -49,6 +55,18 @@ class Hangman_Game_Screen(Frame):
 
         #Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.callback_on_exit
         #).grid(row = 6, column = 1) */
+    def losing_screen(self):
+        self.no_guesses = False;
+        if guesses == 0:
+            self.no_guesses = True;
+
+        if self.no_guesses == True:
+            image = PhotoImage(file="images/ResspassMad.png")
+            piclabel = Label(self, image = image, bg = "", borderwidth = "50px")
+            self.imagelabels.append(piclabel)
+            piclabel.photo = image
+            piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 4)
+            Label(self, text = "You Lose!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 6, column = 2, columnspan = 2)
 
     def selected_exit(self):
         self.callback_on_exit()
