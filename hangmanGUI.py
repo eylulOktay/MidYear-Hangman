@@ -69,9 +69,9 @@ class Hangman_Game_Screen(Frame):
         #Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.callback_on_exit
         #).grid(row = 6, column = 1) */
     def losing_screen(self):
-        self.no_guesses = False;
+        self.no_guesses = False
         if guesses == 0:
-            self.no_guesses = True;
+            self.no_guesses = True
 
         if self.no_guesses == True:
             image = PhotoImage(file="images/ResspassMad.png")
