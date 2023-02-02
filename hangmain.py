@@ -62,7 +62,7 @@ def main():
     print(f"Welcome to Hangman! You have six guesses to guess the {len(char_array)} letter word!")
     print(f"Your word has {len(dash_array)} letters.") 
     num_wrong = 0
-    while dash_array != char_array or guesses > 0:
+    while dash_array != char_array and guesses > 0:
     
         print(toString(dash_array))
         user_letter = input("Enter a letter or word! ")
