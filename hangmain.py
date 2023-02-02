@@ -5,13 +5,15 @@
 # char_array[] contains the correct word split into letters; 
 import random
 
+
 dash_array = []
 char_array = []
 inc_letters = []
 
+
 # reads in file 
 def read():
-    words = (open("wordBank.txt")).read() # reading the file
+    words = (open("MidYear-Hangman/wordBank.txt")).read() # reading the file
     word_list = words.split("\n")
         
     word_num = random.randrange(0,len(word_list))
@@ -61,36 +63,38 @@ def main():
     print(f"Your word has {len(dash_array)} letters.") 
     num_wrong = 0
     while dash_array != char_array and guesses > 0:
+    
+        print(toString(dash_array))
+        user_letter = input("Enter a letter or word! ")
+        print(guesses)
 
-     read()
-     print("Welcome to Hangman!")
-     print(f"Your word has {len(dash_array)} letters.") 
-     while char_array != dash_array:
-         print(toString(dash_array))
-         user_letter = input("Enter a letter or word! ")
+        if checker(user_letter)==False:
+            num_wrong += 1
+            guesses -=1
+            inc_letters.append(user_letter)
+            if  user_letter.isalpha() == False: # have to check if it's a symbol ... 
+                print("This is not a valid input. Please input a letter or word.")
+            if guesses ==0: 
+                print("Nope!")
+            else: 
+                print("Nope! Try Again")
 
-         guesses += 1
-
-         if checker(user_letter)==False:
-             num_wrong += 1
-             inc_letters.append(user_letter)
-             if  user_letter.isalpha() == False: # have to check if it's a symbol ... 
-                 print("This is not a valid input. Please input a letter or word.")
-             else: 
-                 print("Nope! Try Again")
-
-         num_dashes = 0
-         for x in dash_array: 
-             if x == '_': 
-                 num_dashes+=1
-        
-         if num_dashes == 1: 
-             print("You're almost there!")
+        num_dashes = 0
+        for x in dash_array: 
+            if x == '_': 
+                num_dashes+=1
+            
+        if num_dashes == 1: 
+            print("You're almost there!")
         
 
-     print(toString(dash_array))
-     print(f"You won! It took you {guesses} guesses, and you got {num_wrong} wrong.")
-     print(f"Incorrect letters: {toString(inc_letters)}")
+    print(toString(dash_array))
+
+    if dash_array != char_array: 
+        print(f"You lost. The word was {toString(char_array)}!")
+    else: 
+        print(f"You won! It took you {guesses} guesses, and you got {num_wrong} wrong.")
+    print(f"Incorrect letters: {toString(inc_letters)}")
 
 
 main()
