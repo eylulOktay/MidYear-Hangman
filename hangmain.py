@@ -54,7 +54,6 @@ def toString(array):
     return same_string
 
 def main():
-<<<<<<< HEAD
     global guesses
     guesses = 6
     read()
@@ -62,11 +61,7 @@ def main():
     print(f"Your word has {len(dash_array)} letters.") 
     num_wrong = 0
     while dash_array != char_array and guesses > 0:
-=======
-     guesses = 0
-     num_wrong = 0
->>>>>>> 9d15f15d1f9a0cedc88a90c238b7e6deeb5d742b
-    
+
      read()
      print("Welcome to Hangman!")
      print(f"Your word has {len(dash_array)} letters.") 
