@@ -36,6 +36,7 @@ class Hangman_Game_Screen(Frame):
         self.confirm = Button(self, text = "Enter!!!", command = self.reveal)
         self.confirm.grid(row = 3, col = 2, sticky = W)
 
+        
         #Adding hanger pieces
         #imageSmall = PhotoImage(file="images/hanger.gif")
         #w = Label (self,
@@ -49,7 +50,7 @@ class Hangman_Game_Screen(Frame):
         #for row in range(len(dash_array)):
             #w = self.imagelabels
             #if(self.)
-                #image = PhotoImage(file="images/image0.gif")
+                #image = PhotoImage(file="images/1Letter/letterDash.gif")
             #else:
                 #image = PhotoImage(file="images/image" + str(self.grid1.grid[row][col]) + "num.gif")
             #w.configure(image = image)
