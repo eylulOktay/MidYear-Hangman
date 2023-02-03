@@ -10,7 +10,7 @@ from hangman_object import Hangman
 
 # reads in file 
 def read():
-    words = (open("MidYear-Hangman/wordBank.txt")).read() # reading the file
+    words = (open("wordBank.txt")).read() # reading the file
     word_list = words.split("\n")
         
     word_num = random.randrange(0,len(word_list))

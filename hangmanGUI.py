@@ -11,6 +11,7 @@ class Hangman_Game_Screen(Frame):
 
         self.create_widgets()
         self.grid()
+        self.display_word()
 
     #def setup_grid(self):
         #self.grid1 = Grid()
@@ -29,19 +30,31 @@ class Hangman_Game_Screen(Frame):
             #self.rowtexts[row].set(rowonetext)
 
     def create_widgets(self):
-        Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "black", bg = bg_color).grid(row = 0, column = 1)
+        Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "black", bg = bg_color).grid(row = 1, column = 0)
+        self.letter_input = Entry(self)
+        self.letter_input.grid(row = 3, col = 1, sticky = W)
+        self.confirm = Button(self, text = "Enter!!!", command = self.reveal)
+        self.confirm.grid(row = 3, col = 2, sticky = W)
 
         #Adding hanger pieces
-        imageSmall = PhotoImage(file="images/hanger.gif")
-        w = Label (self,
-                        image = imageSmall, borderwidth=0
-                         )
-        w.photo = imageSmall
-        w.grid (row = 9, column = 1)
+        #imageSmall = PhotoImage(file="images/hanger.gif")
+        #w = Label (self,
+                        #image = imageSmall, borderwidth=0
+                         #)
+        #w.photo = imageSmall
+        #w.grid (row = 9, column = 1)
 
     def display_word(self):
-        for char in dash_array:
-            Label(self, text = "" + char + "", font = "Georgia 15", fg = "black").grid(row = 0, column = 2)
+        self.num = 0
+        #for row in range(len(dash_array)):
+            #w = self.imagelabels
+            #if(self.)
+                #image = PhotoImage(file="images/image0.gif")
+            #else:
+                #image = PhotoImage(file="images/image" + str(self.grid1.grid[row][col]) + "num.gif")
+            #w.configure(image = image)
+            #w.image = image
+            
     
     
         #Label(self, text = "Score:", font = "Georgia 15", fg = "Hot Pink"). grid (row = 0, column = 2)
@@ -68,5 +81,8 @@ class Hangman_Game_Screen(Frame):
             piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 4)
             Label(self, text = "You Lose!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 6, column = 2, columnspan = 2)
 
+
+    def winning_screen(self):
+        pass
     def selected_exit(self):
         self.callback_on_exit()
