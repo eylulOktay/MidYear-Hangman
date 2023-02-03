@@ -1,6 +1,7 @@
+import random
 
 class Hangman:
-    def __init__ (self, word):
+    def __init__ (self, filename):
         self.dash_array = []
         self.char_array = []
         self.guessed_array = []
@@ -8,6 +9,12 @@ class Hangman:
 
         letter_counter = 0
         
+        words = (open(filename)).read() # reading the file
+        word_list = words.split("\n")
+            
+        word_num = random.randrange(0,len(word_list))
+        word = word_list[word_num]
+
         for letter in word:
             self.char_array.append(letter)
             letter_counter += 1
