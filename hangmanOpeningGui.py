@@ -16,7 +16,7 @@ class Screen_Opening(Frame):
 
         #title
         Label(self, text = "\n\n\n", bg = bg_color ).grid(row = 0)
-        title = Label(self, text = "Hangman!", font = "Times New Roman 100 bold", fg = "#F67280", bg = bg_color)
+        title = Label(self, text = "Hangman!", font = "Helvetica 100 bold", fg = "#F67280", bg = bg_color)
         title.place(relx = 0.5, rely = 0.5, anchor='center')
         title.grid(row = 0, column = 0)
         
