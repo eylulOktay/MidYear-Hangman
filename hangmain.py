@@ -1,8 +1,3 @@
-# in the case of only one word in file
-
-# reads in the file, creates dash and char array. 
-# dash_array[] starts as an array of dashes; the len of this arr is the same as char_arr 
-# char_array[] contains the correct word split into letters; 
 from hangman_object import Hangman 
 
 def toString(array):
