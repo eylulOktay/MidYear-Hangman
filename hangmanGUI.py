@@ -52,6 +52,14 @@ class Hangman_Game_Screen(Frame):
         Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 6, column = 2)
         Label(self, text = self.hangman.word, fg = "black").grid(row = 7, column = 2)
 
+        #displaying the dash_array
+        self.imagelabels = []
+        for col in range(len(self.hangman.word)):
+            image = PhotoImage(file="images/1Letter/letter_zdash.gif")
+            piclabel = Label(self, image = image)
+            self.imagelabels.append(piclabel)
+            piclabel.photo = image
+            piclabel.grid(row = 10, column = col + 1)
         
         #Adding hanger pieces
         #imageSmall = PhotoImage(file="images/hanger.gif")
@@ -64,30 +72,20 @@ class Hangman_Game_Screen(Frame):
         self.hangman = Hangman('wordbank.txt')
 
     def display_word(self):
-        self.num = 0
-        pass
-        #for row in range(len(dash_array)):
-            #w = self.imagelabels
-            #if(self.)
-                #image = PhotoImage(file="images/1Letter/letterDash.gif")
-            #else:
-                #image = PhotoImage(file="images/image" + str(self.grid1.grid[row][col]) + "num.gif")
-            #w.configure(image = image)
-            #w.image = image
+        #assigning images to letters
+        for char in range(len(self.hangman.dash_array)):
+            w = self.imagelabels[char]
+            if(char== "_"):
+                image = PhotoImage(file="images/1Letter/letterDash.gif")
+            else:
+                image = PhotoImage(file="images/1letter/letter_" + self.hangman.dash_array[char] + ".gif")
+            w.configure(image = image)
+            w.image = image
             
     
-    
-        #Label(self, text = "Score:", font = "Georgia 15", fg = "Hot Pink"). grid (row = 0, column = 2)
 
-        #self.rowtexts = []
-        #for row in range(0,4):
-            #rowtext = StringVar()
-            #rowtext.set("")
-            #Label(self, textvariable = rowtext).grid(row = row + 2, column = 1)
-            #self.rowtexts.append(rowtext)
-
-        #Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.callback_on_exit
-        #).grid(row = 6, column = 1) */
+        Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.selected_exit
+        ).grid(row = 11, column = 1) 
 
     def losing_screen(self):
         pass
