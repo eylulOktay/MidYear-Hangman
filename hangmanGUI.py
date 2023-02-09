@@ -38,14 +38,23 @@ class Hangman_Game_Screen(Frame):
         Label(self, text = self.hangman.word, fg = "black").grid(row = 7, column = 2)
 
         #displaying the dash_array
-        
-        self.imagelabels = []
+        self.dashImageLabels = []
         for col in range(len(self.hangman.dash_array)):
+            image = PhotoImage(file="images/1Letter/letter_zdash.gif")
+            piclabel = Label(self, image = image)
+            self.dashImageLabels.append(piclabel)
+            piclabel.photo = image
+            piclabel.grid(row = 10, column = col + 1) 
+        
+        #displaying inc_array
+        self.incImageLabels = []
+        for coll in range(len(self.hangman.inc_letters)):
             image = PhotoImage(file="images/1Letter/letter_zdash.gif")
             piclabel = Label(self, image = image)
             self.imagelabels.append(piclabel)
             piclabel.photo = image
-            piclabel.grid(row = 10, column = col + 1) 
+            piclabel.grid(row = 10, column = coll + 1) 
+        
         
         
         #Adding hanger pieces
@@ -62,7 +71,7 @@ class Hangman_Game_Screen(Frame):
     def display_word(self):
         #assigning images to letters
         for char in range(len(self.hangman.dash_array)):
-            w = self.imagelabels[char]
+            w = self.dashImageLabels[char]
             #if(char == '_'):
                 #image = PhotoImage(file="images/1Letter/letter_zdash.gif")
             if(self.hangman.dash_array[char] != '_'):
@@ -70,7 +79,15 @@ class Hangman_Game_Screen(Frame):
                 w.configure(image = image)
                 w.image = image
             
-    
+    def display_incorrect(self):
+        for char in range(len(self.hangman.inc_array)):
+            w = self.incImageLabels[char]
+            #if(char == '_'):
+                #image = PhotoImage(file="images/1Letter/letter_zdash.gif")
+            if(self.hangman.dash_array[char] != '_'):
+                image = PhotoImage(file="images/1letter/letter_" + self.hangman.dash_array[char] + ".gif")
+                w.configure(image = image)
+                w.image = image
 
         Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.selected_exit
         ).grid(row = 11, column = 1) 
