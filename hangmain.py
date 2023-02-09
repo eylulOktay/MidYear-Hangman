@@ -34,7 +34,7 @@ def main():
         print(f"You lost. The word was {toString(h.char_array)}!")
     else: 
         print(f"You won! It took you {h.num_guesses} guesses, and you got {h.num_wrong} wrong.")
-    print(f"Incorrect letters: {h.inc_letters}")
+    print(f"Incorrect: {h.inc_letters}")
 
 
 main()
