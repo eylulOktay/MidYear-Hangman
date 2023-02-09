@@ -6,6 +6,8 @@ class Hangman:
         self.char_array = []
         self.guessed_array = []
         self.inc_letters = []
+        self.num_wrong = 0
+        self.num_guesses = 7
 
         letter_counter = 0
         
@@ -29,6 +31,7 @@ class Hangman:
     def checker(self, letter): 
         result = False
         input_arr = []
+        # if full word 
         if len(letter) > 1: 
             for x in letter: 
                 input_arr.append(x)
@@ -36,11 +39,20 @@ class Hangman:
             if (input_arr == self.char_array):
                 self.dash_array = self.char_array
                 result = True
+            else:
+                self.num_wrong += 1
+                self.inc_letters.append(letter)
+                self.num_guesses -= 1
         else: 
+            # if single letter 
             for i in range(0, len(self.char_array)): 
                 if self.char_array[i] == letter: 
                     self.dash_array[i] = letter
                     result = True
+            if result == False: 
+                self.num_wrong += 1
+                self.inc_letters.append(letter)
+                self.num_guesses -= 1
         self.guessed_array.append(letter)
 
         return result  
