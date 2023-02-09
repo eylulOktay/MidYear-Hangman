@@ -17,49 +17,36 @@ class Hangman_Game_Screen(Frame):
         master.bind("<KeyRelease>", self.keyRelease)
 
     def keyRelease(self, e):
-        self.currentInc = self.incorrectChars.get()
-        self.currentInc += e.char
-        self.incorrectChars.set(self.currentInc)
+        self.hangman.checker("" + (e.char).lower())
+        self.incorrectChars.set(self.hangman.dash_array)
+        self.display_word()
 
-    #def setup_grid(self):
-        #self.grid1 = Grid()
-
-    #def display_grid(self):
-        #for row in range(0):
-        #row = 0
-        #for row in range(0,4):
-            #rowonetext = ""
-            #for col in range(0,4):
-                #if self.grid1.grid[row][col] == None:
-                    #rowonetext += "  x  "
-                #else:
-                    #rowonetext += "   " + str(self.grid1.grid[row][col])
-
-            #self.rowtexts[row].set(rowonetext)
 
     def create_widgets(self):
         Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "black", bg = bg_color).grid(row = 1, column = 0)
 
         self.incorrectChars = StringVar()
         self.wordChars = StringVar()
-        string1 = ""
-        wordlen = len(self.hangman.word)
-        for int in range(wordlen):
-            string1 += "_"
-        self.wordChars.set(string1)
+        #string1 = ""
+        #wordlen = len(self.hangman.word)
+        #for int in range(wordlen):
+            #string1 += "_"
+        #self.wordChars.set(string1)
         
-        Label(self, textvariable = self.wordChars, fg = "black").grid(row = 5, column = 2)
-        Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 6, column = 2)
+        Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 16, column = 2)
+        #Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 2, column = 2)
         Label(self, text = self.hangman.word, fg = "black").grid(row = 7, column = 2)
 
         #displaying the dash_array
+        
         self.imagelabels = []
-        for col in range(len(self.hangman.word)):
+        for col in range(len(self.hangman.dash_array)):
             image = PhotoImage(file="images/1Letter/letter_zdash.gif")
             piclabel = Label(self, image = image)
             self.imagelabels.append(piclabel)
             piclabel.photo = image
-            piclabel.grid(row = 10, column = col + 1)
+            piclabel.grid(row = 10, column = col + 1) 
+        
         
         #Adding hanger pieces
         #imageSmall = PhotoImage(file="images/hanger.gif")
@@ -68,6 +55,7 @@ class Hangman_Game_Screen(Frame):
                          #)
         #w.photo = imageSmall
         #w.grid (row = 9, column = 1)
+
     def create_hangman(self):
         self.hangman = Hangman('wordbank.txt')
 
@@ -75,12 +63,12 @@ class Hangman_Game_Screen(Frame):
         #assigning images to letters
         for char in range(len(self.hangman.dash_array)):
             w = self.imagelabels[char]
-            if(char== "_"):
-                image = PhotoImage(file="images/1Letter/letterDash.gif")
-            else:
+            #if(char == '_'):
+                #image = PhotoImage(file="images/1Letter/letter_zdash.gif")
+            if(self.hangman.dash_array[char] != '_'):
                 image = PhotoImage(file="images/1letter/letter_" + self.hangman.dash_array[char] + ".gif")
-            w.configure(image = image)
-            w.image = image
+                w.configure(image = image)
+                w.image = image
             
     
 
@@ -100,6 +88,7 @@ class Hangman_Game_Screen(Frame):
             #piclabel.photo = image
             #piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 4)
             #Label(self, text = "You Lose!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 6, column = 2, columnspan = 2)
+        
     def selected_exit(self):
         self.callback_on_exit()
 
