@@ -13,12 +13,14 @@ class Hangman_Game_Screen(Frame):
         self.create_widgets()
         self.grid()
         self.display_word()
+        self.display_incorrect()
 
         master.bind("<KeyRelease>", self.keyRelease)
 
     def keyRelease(self, e):
         self.hangman.checker("" + (e.char).lower())
         self.incorrectChars.set(self.hangman.dash_array)
+        self.wordChars.set(self.hangman.inc_letters)
         self.display_word()
 
 
@@ -34,7 +36,7 @@ class Hangman_Game_Screen(Frame):
         #self.wordChars.set(string1)
         
         Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 16, column = 2)
-        #Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 2, column = 2)
+        Label(self, textvariable = self.wordChars, fg = "black").grid(row = 2, column = 2)
         Label(self, text = self.hangman.word, fg = "black").grid(row = 7, column = 2)
 
         #displaying the dash_array
@@ -46,16 +48,17 @@ class Hangman_Game_Screen(Frame):
             piclabel.photo = image
             piclabel.grid(row = 10, column = col + 1) 
         
-        #displaying inc_array
+        #displaying inc_letters
         self.incImageLabels = []
         for coll in range(len(self.hangman.inc_letters)):
-            image = PhotoImage(file="images/1Letter/letter_zdash.gif")
-            piclabel = Label(self, image = image)
-            self.imagelabels.append(piclabel)
-            piclabel.photo = image
-            piclabel.grid(row = 10, column = coll + 1) 
+            img = PhotoImage(file="images/1Letter/letter_zdash.gif")
+            picturelabel = Label(self, image = image)
+            self.incImageLabels.append(picturelabel)
+            picturelabel.photo = img
+            picturelabel.grid(row = 11, column = coll + 1) 
         
-        
+        Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.selected_exit
+        ).grid(row = 12, column = 1) 
         
         #Adding hanger pieces
         #imageSmall = PhotoImage(file="images/hanger.gif")
@@ -72,25 +75,20 @@ class Hangman_Game_Screen(Frame):
         #assigning images to letters
         for char in range(len(self.hangman.dash_array)):
             w = self.dashImageLabels[char]
-            #if(char == '_'):
-                #image = PhotoImage(file="images/1Letter/letter_zdash.gif")
             if(self.hangman.dash_array[char] != '_'):
                 image = PhotoImage(file="images/1letter/letter_" + self.hangman.dash_array[char] + ".gif")
                 w.configure(image = image)
                 w.image = image
             
     def display_incorrect(self):
-        for char in range(len(self.hangman.inc_array)):
-            w = self.incImageLabels[char]
+        for char in range(len(self.hangman.inc_letters)):
+            x = self.incImageLabels[char]
             #if(char == '_'):
                 #image = PhotoImage(file="images/1Letter/letter_zdash.gif")
-            if(self.hangman.dash_array[char] != '_'):
-                image = PhotoImage(file="images/1letter/letter_" + self.hangman.dash_array[char] + ".gif")
-                w.configure(image = image)
-                w.image = image
+            img = PhotoImage(file="images/1letter/letter_" + self.hangman.inc_letters[char] + ".gif")
+            x.configure(img = img)
+            x.img = img
 
-        Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.selected_exit
-        ).grid(row = 11, column = 1) 
 
     def losing_screen(self):
         pass
