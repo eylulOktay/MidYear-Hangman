@@ -18,14 +18,14 @@ class Hangman_Game_Screen(Frame):
         master.bind("<KeyRelease>", self.keyRelease)
 
     def keyRelease(self, e):
-        self.hangman.checker("" + (e.char).lower())
+        self.inval = self.hangman.checker("" + (e.char).lower())
         self.incorrectChars.set(self.hangman.dash_array)
         self.wordChars.set(self.hangman.inc_letters)
         self.display_word()
 
 
     def create_widgets(self):
-        Label(self, text = "HANGMAN", font = "Georgia 25 bold", fg = "black", bg = bg_color).grid(row = 1, column = 0)
+        Label(self, text = "HANGMAN", font = "Georgia 24 bold", fg = "black", bg = bg_color).grid(row = 1, column = 1)
 
         self.incorrectChars = StringVar()
         self.wordChars = StringVar()
@@ -88,6 +88,16 @@ class Hangman_Game_Screen(Frame):
             img = PhotoImage(file="images/1letter/letter_" + self.hangman.inc_letters[char] + ".gif")
             x.configure(img = img)
             x.img = img
+
+    def inval_input_screen(self):
+        if(self.inval == False):
+            image = PhotoImage(file="images/RespassMad.png")
+            piclabel = Label(self, image = image, bg = "Hot Pink", borderwidth = "50px")
+            self.imagelabels.append(piclabel)
+            piclabel.photo = image
+            piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 2)
+            Label(self, text = "Invalid!!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 3, column = 2, columnspan = 2)
+
 
 
     def losing_screen(self):
