@@ -51,8 +51,8 @@ class Hangman_Game_Screen(Frame):
         #displaying inc_letters
         self.incImageLabels = []
         for coll in range(len(self.hangman.inc_letters)):
-            img = PhotoImage(file="images/1Letter/letter_zdash.gif")
-            picturelabel = Label(self, image = image)
+            img = PhotoImage(file="images/blank.gif")
+            picturelabel = Label(self, img  = img)
             self.incImageLabels.append(picturelabel)
             picturelabel.photo = img
             picturelabel.grid(row = 11, column = coll + 1) 
@@ -124,7 +124,12 @@ class Hangman_Game_Screen(Frame):
         pass
 
     def winning_screen(self):
-        pass
+        image = PhotoImage(file="images/RespassMad.png")
+        piclabel = Label(self, image = image, bg = "Hot Pink", borderwidth = "50px")
+        self.imagelabels.append(piclabel)
+        piclabel.photo = image
+        piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 2)
+        Label(self, text = "Invalid!!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 3, column = 2, columnspan = 2)
 
     def selected_exit(self):
         self.callback_on_exit()
