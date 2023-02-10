@@ -32,7 +32,7 @@ class Hangman:
     def checker(self, letter): 
         result = False
         # if full word 
-        if letter in self.input_arr or letter.isalpha() == False: 
+        if letter in self.inc_letters or letter.isalpha() == False: 
             return False 
         else: 
             if len(letter) > 1: 
