@@ -10,6 +10,6 @@ curry
 sugar
 jelly
 chips
-onion 
+onion
 candy
 beans
