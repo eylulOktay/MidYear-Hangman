@@ -5,6 +5,7 @@ class Hangman:
         self.dash_array = []
         self.char_array = []
         self.guessed_array = []
+        self.input_arr = []
         self.inc_letters = []
         self.num_wrong = 0
         self.num_guesses = 7
@@ -30,16 +31,14 @@ class Hangman:
       
     def checker(self, letter): 
         result = False
-        input_arr = []
         # if full word 
-        if letter in input_arr or letter.isalpha() == False: 
+        if letter in self.inc_letters or letter.isalpha() == False: 
             return False 
         else: 
             if len(letter) > 1: 
                 for x in letter: 
-                    input_arr.append(x)
-                print(input_arr)
-                if (input_arr == self.char_array):
+                    self.input_arr.append(x)
+                if (self.input_arr == self.char_array):
                     self.dash_array = self.char_array
                     result = True
                 else:
