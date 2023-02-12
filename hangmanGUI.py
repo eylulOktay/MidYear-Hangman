@@ -16,6 +16,7 @@ class Hangman_Game_Screen(Frame):
         self.display_incorrect()
         self.winning_screen()
         self.displayHangman()
+        self.losing_screen()
 
 
         master.bind("<KeyRelease>", self.keyRelease)
@@ -28,6 +29,7 @@ class Hangman_Game_Screen(Frame):
         self.display_incorrect()
         self.winning_screen()
         self.displayHangman()
+        self.losing_screen()
 
 
     def create_widgets(self):
@@ -49,7 +51,7 @@ class Hangman_Game_Screen(Frame):
         self.dashImageLabels = []
         for col in range(len(self.hangman.dash_array)):
             image = PhotoImage(file="images/1Letter/letter_zdash.gif")
-            piclabel = Label(self, image = image)
+            piclabel = Label(self, image = image, borderwidth=0)
             self.dashImageLabels.append(piclabel)
             piclabel.photo = image
             piclabel.grid(row = 5, column = col + 9) 
@@ -58,7 +60,7 @@ class Hangman_Game_Screen(Frame):
         self.incImageLabels = []
         for coll in range(7):
             img = PhotoImage(file="images/blank.gif")
-            picturelabel = Label(self, image  = img)
+            picturelabel = Label(self, image  = img, borderwidth=0)
             self.incImageLabels.append(picturelabel)
             picturelabel.photo = img
             picturelabel.grid(row = 14, column = coll + 7) 
@@ -82,6 +84,20 @@ class Hangman_Game_Screen(Frame):
                         )
             y.photo = imageS
             y.grid (row = numb + 7, column = 1)
+
+        imageD = PhotoImage(file="images/blank.gif")
+        d = Label (self,
+                image = imageD, borderwidth=0
+                    )
+        d.photo = imageD
+        d.grid (row = 8, column = 5)
+
+        imageF = PhotoImage(file="images/blank.gif")
+        f = Label (self,
+                image = imageF, borderwidth=0
+                    )
+        f.photo = imageF
+        f.grid (row = 10, column = 5)
 
 
 
@@ -109,7 +125,7 @@ class Hangman_Game_Screen(Frame):
             
     def display_incorrect(self):
         for letter in range(len(self.hangman.inc_letters)):
-            x = self.incImageLabels[letter - 1]
+            x = self.incImageLabels[letter]
             
             img = PhotoImage(file="images/1letter/letter_" + self.hangman.inc_letters[letter] + ".gif")
             x.configure(image = img)
@@ -163,7 +179,7 @@ class Hangman_Game_Screen(Frame):
             return
 
         #arm2
-        imageD = PhotoImage(file="images/Body/body_arm2.gif")
+        imageD = PhotoImage(file="images/Body/body_arm1.gif")
         d = Label (self,
                 image = imageD, borderwidth=0
                     )
@@ -206,18 +222,13 @@ class Hangman_Game_Screen(Frame):
 
 
     def losing_screen(self):
-        pass
-        #self.no_guesses = False
-        #if guesses == 0:
-            #self.no_guesses = True
-
-        #if self.no_guesses == True:
-            #image = PhotoImage(file="images/ResspassMad.png")
-            #piclabel = Label(self, image = image, bg = "", borderwidth = "50px")
-            #self.imagelabels.append(piclabel)
-            #piclabel.photo = image
-            #piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 4)
-            #Label(self, text = "You Lose!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 6, column = 2, columnspan = 2)
+        if(self.hangman.num_guesses == 0):
+            image = PhotoImage(file="images/ResspassMad.png")
+            piclabel = Label(self, image = image, bg = "", borderwidth = "50px")
+            self.dashImageLabels.append(piclabel)
+            piclabel.photo = image
+            piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 4)
+            Label(self, text = "You Lose!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 6, column = 2, columnspan = 2)
         
     def selected_exit(self):
         self.callback_on_exit()
@@ -232,7 +243,7 @@ class Hangman_Game_Screen(Frame):
         if(self.hangman.dashes_rem() == 0):
             image = PhotoImage(file="images/RespassHappy.png")
             piclabel = Label(self, image = image, bg = "Hot Pink", borderwidth = "50px")
-            self.imagelabels.append(piclabel)
+            self.dashImageLabels.append(piclabel)
             piclabel.photo = image
             piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 2)
             #Label(self, text = "Invalid!!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 3, column = 2, columnspan = 2)
