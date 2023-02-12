@@ -12,18 +12,6 @@ class GameManager(object):
         self.root.title ("Hangman!")
         self.root.geometry ("1185x505")
         self.current_screen = Screen_Opening (master = self.root, callback_on_play = self.onclose_openingscreen)
-    
-    def setup_greetingscreen(self): 
-        introducingImg = PhotoImage(file="images/opening.pdf")
-        w = Label (self,
-                        image = introducingImg, borderwidth=0
-                         )
-        w.photo = introducingImg
-        w.grid (row = 0, column = 1, columnspan = 4)
-    
-    def onclose_greetscreen(self): 
-        self.current_screen.destroy()
-        self.setup_openingscreen()
 
     def onclose_openingscreen(self):
         self.current_screen.destroy()
@@ -31,7 +19,7 @@ class GameManager(object):
 
     def setup_gameGUI(self):
         self.root.title ("Hangman!")
-        self.root.geometry ("900x900")
+        self.root.geometry ("900x375")
         self.current_screen = Hangman_Game_Screen (master = self.root, callback_on_exit = self.onclose_gameGUI)
 
     def onclose_gameGUI(self):

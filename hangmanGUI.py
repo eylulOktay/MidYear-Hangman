@@ -14,6 +14,9 @@ class Hangman_Game_Screen(Frame):
         self.grid()
         self.display_word()
         self.display_incorrect()
+        self.winning_screen()
+        self.displayHangman()
+
 
         master.bind("<KeyRelease>", self.keyRelease)
 
@@ -23,6 +26,8 @@ class Hangman_Game_Screen(Frame):
         self.wordChars.set(self.hangman.inc_letters)
         self.display_word()
         self.display_incorrect()
+        self.winning_screen()
+        self.displayHangman()
 
 
     def create_widgets(self):
@@ -47,13 +52,13 @@ class Hangman_Game_Screen(Frame):
             piclabel = Label(self, image = image)
             self.dashImageLabels.append(piclabel)
             piclabel.photo = image
-            piclabel.grid(row = 10, column = col + 7) 
+            piclabel.grid(row = 5, column = col + 9) 
         
         #displaying inc_letters
         self.incImageLabels = []
-        for coll in range(len(self.hangman.inc_letters)):
+        for coll in range(7):
             img = PhotoImage(file="images/blank.gif")
-            picturelabel = Label(self, img  = img)
+            picturelabel = Label(self, image  = img)
             self.incImageLabels.append(picturelabel)
             picturelabel.photo = img
             picturelabel.grid(row = 14, column = coll + 7) 
@@ -68,7 +73,7 @@ class Hangman_Game_Screen(Frame):
                     image = imageSmall, borderwidth=0
                         )
             w.photo = imageSmall
-            w.grid (row = 9, column = num + 1)
+            w.grid (row = 6, column = num + 1)
             
         for numb in range(5):
             imageS = PhotoImage(file="images/hanger/hangerVertical.gif")
@@ -76,7 +81,19 @@ class Hangman_Game_Screen(Frame):
                     image = imageS, borderwidth=0
                         )
             y.photo = imageS
-            y.grid (row = numb + 1, column = 1)
+            y.grid (row = numb + 7, column = 1)
+
+
+
+        #if(self.hangman.num_guesses == 6):
+            #Label(self, text = "twkelfa", fg = "black").grid(row = 15, column = 8)
+            #imageS = PhotoImage(file="images/Body/body_head.gif")
+            #y = Label (self,
+                    #image = imageS, borderwidth=0
+                        #)
+            #y.photo = imageS
+            #y.grid (row = 15, column = 8)
+
 
     def create_hangman(self):
         self.hangman = Hangman('wordbank.txt')
@@ -92,11 +109,90 @@ class Hangman_Game_Screen(Frame):
             
     def display_incorrect(self):
         for letter in range(len(self.hangman.inc_letters)):
-            x = self.incImageLabels[letter]
+            x = self.incImageLabels[letter - 1]
             
             img = PhotoImage(file="images/1letter/letter_" + self.hangman.inc_letters[letter] + ".gif")
-            x.configure(img = img)
+            x.configure(image = img)
             x.img = img
+        
+
+    def displayHangman(self):
+        if(self.hangman.num_guesses == 7):
+            return
+        #head
+        imageS = PhotoImage(file="images/Body/body_head.gif")
+        y = Label (self,
+                image = imageS, borderwidth=0
+                    )
+        y.photo = imageS
+        y.grid (row = 7, column = 4)
+
+        if(self.hangman.num_guesses == 6):
+            return
+        #torso1
+        imageA = PhotoImage(file="images/Body/body_torso1.gif")
+        a = Label (self,
+                image = imageA, borderwidth=0
+                    )
+        a.photo = imageA
+        a.grid (row = 8, column = 4)
+
+        if(self.hangman.num_guesses == 5):
+            return
+
+        #torso2
+        imageB = PhotoImage(file="images/Body/body_torso2.gif")
+        b = Label (self,
+                image = imageB, borderwidth=0
+                    )
+        b.photo = imageB
+        b.grid (row = 9, column = 4)
+
+        if(self.hangman.num_guesses == 4):
+            return
+
+        #arm1
+        imageC = PhotoImage(file="images/Body/body_arm1.gif")
+        c = Label (self,
+                image = imageC, borderwidth=0
+                    )
+        c.photo = imageC
+        c.grid (row = 8, column = 3)
+
+        if(self.hangman.num_guesses == 3):
+            return
+
+        #arm2
+        imageD = PhotoImage(file="images/Body/body_arm2.gif")
+        d = Label (self,
+                image = imageD, borderwidth=0
+                    )
+        d.photo = imageD
+        d.grid (row = 8, column = 5)
+
+        if(self.hangman.num_guesses == 2):
+            return
+
+        #leg1
+        imageE = PhotoImage(file="images/Body/body_leg1.gif")
+        e = Label (self,
+                image = imageE, borderwidth=0
+                    )
+        e.photo = imageE
+        e.grid (row = 10, column = 3)
+
+        if(self.hangman.num_guesses == 1):
+            return
+
+        #leg2
+        imageF = PhotoImage(file="images/Body/body_leg2.gif")
+        f = Label (self,
+                image = imageF, borderwidth=0
+                    )
+        f.photo = imageF
+        f.grid (row = 10, column = 5)
+
+        
 
     def inval_input_screen(self):
         if(self.inval == False):
@@ -133,12 +229,13 @@ class Hangman_Game_Screen(Frame):
         pass
 
     def winning_screen(self):
-        image = PhotoImage(file="images/RespassMad.png")
-        piclabel = Label(self, image = image, bg = "Hot Pink", borderwidth = "50px")
-        self.imagelabels.append(piclabel)
-        piclabel.photo = image
-        piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 2)
-        Label(self, text = "Invalid!!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 3, column = 2, columnspan = 2)
+        if(self.hangman.dashes_rem() == 0):
+            image = PhotoImage(file="images/RespassHappy.png")
+            piclabel = Label(self, image = image, bg = "Hot Pink", borderwidth = "50px")
+            self.imagelabels.append(piclabel)
+            piclabel.photo = image
+            piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 2)
+            #Label(self, text = "Invalid!!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 3, column = 2, columnspan = 2)
 
     def selected_exit(self):
         self.callback_on_exit()
