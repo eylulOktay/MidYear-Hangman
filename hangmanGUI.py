@@ -14,8 +14,8 @@ class Hangman_Game_Screen(Frame):
         self.grid()
         self.display_word()
         self.display_incorrect()
-        self.winning_screen()
         self.displayHangman()
+        self.winning_screen()
         self.losing_screen()
 
 
@@ -27,8 +27,8 @@ class Hangman_Game_Screen(Frame):
         self.wordChars.set(self.hangman.inc_letters)
         self.display_word()
         self.display_incorrect()
-        self.winning_screen()
         self.displayHangman()
+        self.winning_screen()
         self.losing_screen()
 
 
@@ -43,8 +43,8 @@ class Hangman_Game_Screen(Frame):
             #string1 += "_"
         #self.wordChars.set(string1)
         
-        Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 16, column = 2)
-        Label(self, textvariable = self.wordChars, fg = "black").grid(row = 2, column = 2)
+        #Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 16, column = 2)
+        #Label(self, textvariable = self.wordChars, fg = "black").grid(row = 2, column = 2)
         Label(self, text = self.hangman.word, fg = "black").grid(row = 7, column = 2)
 
         #displaying the dash_array
@@ -54,7 +54,7 @@ class Hangman_Game_Screen(Frame):
             piclabel = Label(self, image = image, borderwidth=0)
             self.dashImageLabels.append(piclabel)
             piclabel.photo = image
-            piclabel.grid(row = 5, column = col + 9) 
+            piclabel.grid(row = 9, column = col + 8) 
         
         #displaying inc_letters
         self.incImageLabels = []
@@ -63,7 +63,7 @@ class Hangman_Game_Screen(Frame):
             picturelabel = Label(self, image  = img, borderwidth=0)
             self.incImageLabels.append(picturelabel)
             picturelabel.photo = img
-            picturelabel.grid(row = 14, column = coll + 7) 
+            picturelabel.grid(row = 6, column = coll + 7) 
         
         Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.selected_exit
         ).grid(row = 20, column = 1) 
@@ -77,7 +77,7 @@ class Hangman_Game_Screen(Frame):
             w.photo = imageSmall
             w.grid (row = 6, column = num + 1)
             
-        for numb in range(5):
+        for numb in range(6):
             imageS = PhotoImage(file="images/hanger/hangerVertical.gif")
             y = Label (self,
                     image = imageS, borderwidth=0
@@ -99,21 +99,11 @@ class Hangman_Game_Screen(Frame):
         f.photo = imageF
         f.grid (row = 10, column = 5)
 
-
-
-        #if(self.hangman.num_guesses == 6):
-            #Label(self, text = "twkelfa", fg = "black").grid(row = 15, column = 8)
-            #imageS = PhotoImage(file="images/Body/body_head.gif")
-            #y = Label (self,
-                    #image = imageS, borderwidth=0
-                        #)
-            #y.photo = imageS
-            #y.grid (row = 15, column = 8)
-
-
+    #creating object
     def create_hangman(self):
         self.hangman = Hangman('wordbank.txt')
 
+    #update dash array
     def display_word(self):
         #assigning images to letters
         for char in range(len(self.hangman.dash_array)):
@@ -123,7 +113,10 @@ class Hangman_Game_Screen(Frame):
                 w.configure(image = image)
                 w.image = image
             
+    #update incorrect array 
     def display_incorrect(self):
+        if(len(self.hangman.inc_letters) >= 8):
+            return
         for letter in range(len(self.hangman.inc_letters)):
             x = self.incImageLabels[letter]
             
@@ -131,10 +124,12 @@ class Hangman_Game_Screen(Frame):
             x.configure(image = img)
             x.img = img
         
-
+    #inserting each hangman part for each wrong guess
     def displayHangman(self):
         if(self.hangman.num_guesses == 7):
             return
+
+        
         #head
         imageS = PhotoImage(file="images/Body/body_head.gif")
         y = Label (self,
@@ -208,45 +203,55 @@ class Hangman_Game_Screen(Frame):
         f.photo = imageF
         f.grid (row = 10, column = 5)
 
-        
-
-    def inval_input_screen(self):
-        if(self.inval == False):
-            image = PhotoImage(file="images/RespassMad.png")
-            piclabel = Label(self, image = image, bg = "Hot Pink", borderwidth = "50px")
-            self.imagelabels.append(piclabel)
-            piclabel.photo = image
-            piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 2)
-            Label(self, text = "Invalid!!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 3, column = 2, columnspan = 2)
-
-
 
     def losing_screen(self):
-        if(self.hangman.num_guesses == 0):
-            image = PhotoImage(file="images/ResspassMad.png")
-            piclabel = Label(self, image = image, bg = "", borderwidth = "50px")
+        
+        if(len(self.hangman.inc_letters) > 7):
+            imageS = PhotoImage(file="images/blank.gif")
+            y = Label (self,
+                    image = imageS, bg = bg_color, borderwidth="500px"
+                        )
+            y.photo = imageS
+            y.grid (row = 6, column = 0, rowspan = 6, columnspan = 20)
+
+            image = PhotoImage(file="images/respassMad.gif")
+            piclabel = Label(self, image = image, bg = bg_color, borderwidth = "50px")
             self.dashImageLabels.append(piclabel)
             piclabel.photo = image
-            piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 4)
-            Label(self, text = "You Lose!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 6, column = 2, columnspan = 2)
+            piclabel.grid(row = 2, column = 1, columnspan = 20, rowspan = 6)
+            Label(self, text = "You Lose!", bg = bg_color, font = "Georgia 24", fg = "black").grid(row = 9, column = 10, columnspan = 2)
+            
         
     def selected_exit(self):
         self.callback_on_exit()
 
-    def update_correct(self):
-        pass 
-
-    def take_input(self):
-        pass
-
     def winning_screen(self):
         if(self.hangman.dashes_rem() == 0):
-            image = PhotoImage(file="images/RespassHappy.png")
-            piclabel = Label(self, image = image, bg = "Hot Pink", borderwidth = "50px")
+            imageS = PhotoImage(file="images/blank.gif")
+            y = Label (self,
+                    image = imageS, bg = bg_color, borderwidth="500px"
+                        )
+            y.photo = imageS
+            y.grid (row = 6, column = 0, rowspan = 6, columnspan = 20)
+
+            image = PhotoImage(file="images/respassHappy.gif")
+            w = Label (self,
+                    image = image, bg = bg_color, borderwidth="50px"
+                        )
+            w.photo = image
+            w.grid (row = 2, column = 1, rowspan = 6, columnspan = 20)
+
+
+            
+        """
+        if(self.hangman.dashes_rem() == 0):
+            image = PhotoImage(file="images/RespassHappy.gif")
+            piclabel = Label(self, image = image, bg = bg_color, borderwidth = "100px")
             self.dashImageLabels.append(piclabel)
             piclabel.photo = image
-            piclabel.grid(row = 3, column = 1, columnspan = 4, rowspan = 2)
-            #Label(self, text = "Invalid!!", bg = "Hot Pink", font = "Georgia 24", fg = "white").grid(row = 3, column = 2, columnspan = 2)
+            piclabel.grid(row = 6, column = 1, columnspan = 10, rowspan = 6)
+            Label(self, text = "WOW!! YOU WON!!!", bg = bg_color, font = "Georgia 24", fg = "black").grid(row = 7, column = 7, columnspan = 2)
+            """
 
     def selected_exit(self):
         self.callback_on_exit()
