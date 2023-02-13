@@ -8,10 +8,16 @@ class GameManager(object):
         self.root = Tk()
         self.current_screen = None
     
+    def openingImage(self): 
+        self.hangman = "images/hangman.png"
+    
     def setup_openingscreen(self):
         self.root.title ("Hangman!")
         self.root.geometry ("1185x505")
         self.current_screen = Screen_Opening (master = self.root, callback_on_play = self.onclose_openingscreen)
+
+    def greetingScreen(self): 
+        self.hangman = "images/hangman.png"
 
     def onclose_openingscreen(self):
         self.current_screen.destroy()
