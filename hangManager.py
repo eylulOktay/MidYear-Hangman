@@ -12,7 +12,6 @@ class GameManager(object):
         self.root.title ("Hangman!")
         self.root.geometry ("1185x505")
         self.current_screen = Screen_Opening (master = self.root, callback_on_play = self.onclose_openingscreen)
-    
 
     def onclose_openingscreen(self):
         self.current_screen.destroy()
@@ -20,7 +19,7 @@ class GameManager(object):
 
     def setup_gameGUI(self):
         self.root.title ("Hangman!")
-        self.root.geometry ("900x900")
+        self.root.geometry ("1200x735")
         self.current_screen = Hangman_Game_Screen (master = self.root, callback_on_exit = self.onclose_gameGUI)
 
     def onclose_gameGUI(self):
