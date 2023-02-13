@@ -68,8 +68,3 @@ class Hangman:
                 num_dashes += 1
 
         return num_dashes
-
-    def lose(self):
-        if(self.dashes_rem() >= 0 and self.num_guesses <= -1):
-            return True
-        return False

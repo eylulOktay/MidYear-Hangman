@@ -45,7 +45,7 @@ class Hangman_Game_Screen(Frame):
         
         #Label(self, textvariable = self.incorrectChars, fg = "black").grid(row = 16, column = 2)
         #Label(self, textvariable = self.wordChars, fg = "black").grid(row = 2, column = 2)
-        Label(self, text = self.hangman.word, fg = "black").grid(row = 7, column = 2)
+        #Label(self, text = self.hangman.word, fg = "black").grid(row = 7, column = 2)
 
         #displaying the dash_array
         self.dashImageLabels = []
@@ -65,8 +65,8 @@ class Hangman_Game_Screen(Frame):
             picturelabel.photo = img
             picturelabel.grid(row = 6, column = coll + 7) 
         
-        Button(self, text = "Exit", font = "Courier 12 bold", fg = "Maroon3", command = self.selected_exit
-        ).grid(row = 20, column = 1) 
+        Button(self, text = "Exit to Home", font = "Courier 12 bold", fg = "#7286D3", command = self.selected_exit
+        ).grid(row = 11, column = 10) 
         
         #Adding hanger pieces
         for num in range(4):
@@ -206,7 +206,7 @@ class Hangman_Game_Screen(Frame):
 
     def losing_screen(self):
         
-        if(len(self.hangman.inc_letters) > 7):
+        if(len(self.hangman.inc_letters) > 6):
             imageS = PhotoImage(file="images/blank.gif")
             y = Label (self,
                     image = imageS, bg = bg_color, borderwidth="500px"
@@ -215,11 +215,15 @@ class Hangman_Game_Screen(Frame):
             y.grid (row = 6, column = 0, rowspan = 6, columnspan = 20)
 
             image = PhotoImage(file="images/respassMad.gif")
-            piclabel = Label(self, image = image, bg = bg_color, borderwidth = "50px")
+            piclabel = Label(self, image = image, bg = bg_color, borderwidth = "40px")
             self.dashImageLabels.append(piclabel)
             piclabel.photo = image
-            piclabel.grid(row = 2, column = 1, columnspan = 20, rowspan = 6)
-            Label(self, text = "You Lose!", bg = bg_color, font = "Georgia 24", fg = "black").grid(row = 9, column = 10, columnspan = 2)
+            piclabel.grid(row = 1, column = 1, columnspan = 20)
+
+            Label(self, text = "YOU LOST \n\nThe word was " + self.hangman.word + "!", font = "Courier 20 bold", fg = "#7286D3", bg = bg_color).grid(row = 5, column = 8)
+            #Label(self, text = "The Word Was " + self.hangman.word + "!", font = "Courier 20 bold", fg = "#7286D3", bg = bg_color).grid(row = 6, column = 8)
+            Button(self, text = "Exit to Home", font = "Courier 12 bold", fg = "#7286D3", command = self.selected_exit
+            ).grid(row = 6, column = 8)
             
         
     def selected_exit(self):
@@ -239,7 +243,12 @@ class Hangman_Game_Screen(Frame):
                     image = image, bg = bg_color, borderwidth="50px"
                         )
             w.photo = image
-            w.grid (row = 2, column = 1, rowspan = 6, columnspan = 20)
+            w.grid (row = 2, column = 1, rowspan = 2, columnspan = 20)
+
+            Label(self, text = "YAY YOU WON!!!", font = "Courier 40 bold", fg = "#7286D3", bg = bg_color).grid(row = 5, column = 8)
+            
+            Button(self, text = "Exit to Home", font = "Courier 12 bold", fg = "#7286D3", command = self.selected_exit
+            ).grid(row = 6, column = 8)
 
 
             
